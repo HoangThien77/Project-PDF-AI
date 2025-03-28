@@ -44,14 +44,6 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
 @layer base {
   *,
   ::after,
@@ -60,10 +52,41 @@
   ::file-selector-button {
     border-color: var(--color-gray-200, currentColor);
   }
-}
 
-@layer utilities {
-  @plugin "tailwindcss-animate";
+  * {
+    @apply border-border outline-ring/50;
+  }
+  h1 {
+    @apply text-4xl md:text-6xl xl:text-7xl font-bold;
+  }
+  h2 {
+    @apply text-xl lg:text-3xl font-medium;
+  }
+  h3 {
+    @apply text-2xl lg:text-4xl font-medium;
+  }
+  a {
+    @apply hover:cursor-pointer;
+  }
+  button {
+    @apply hover:cursor-pointer bg-rose-600 hover:bg-rose-700;
+  }
+
+  @keyframes gradient-x {
+    0%,
+    100% {
+      background-size: 200% 100%;
+      background-position: left center;
+    }
+    50% {
+      background-size: 200% 100%;
+      background-position: right center;
+    }
+  }
+  
+  .animate-gradient-x {
+    animation: gradient-x 3s linear infinite;
+  }
 }
 
 @layer utilities {
@@ -137,11 +160,10 @@
   }
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+  @media (width >= --theme(--breakpoint-sm)) {
+    max-width: 1400px;
   }
 }
