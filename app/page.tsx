@@ -8,7 +8,7 @@ import CTASection from "@/components/home/cta-section";
 export default function Home() {
   return (
     <div className="relatice w-full ">
-      <BgGradient children={undefined} />
+      <BgGradient />
       <div className="flex flex-col">
         <HeroSection />
         <DemoSection />
